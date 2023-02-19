@@ -18,15 +18,15 @@ class _MyDrawerState extends State<MyDrawer> {
         mainAxisSize: MainAxisSize.max,
         children: [
           // DrawerHeader(child: Text('Ahmer')),
-          const UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
+          Container(
+            height: 150.0,
+            width: double.infinity,
+            decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/toka.jpg"),
-                fit: BoxFit.cover,
+                image: AssetImage("assets/images/eka.jpg"),
+                fit: BoxFit.fill,
               ),
             ),
-            accountName: Text('Ahmer Iqbal'),
-            accountEmail: Text('ahmer5253@gmail.com'),
           ),
           ListTile(
             leading: const Icon(Icons.account_circle),
