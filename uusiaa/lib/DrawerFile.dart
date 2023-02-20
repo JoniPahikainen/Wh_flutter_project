@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uusiaa/MusicPage.dart';
 import 'NewPage.dart';
 import 'HomePage.dart';
 
@@ -50,12 +51,13 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             leading: const Icon(Icons.contacts),
-            title: const Text('Contacts'),
+            title: const Text('Music'),
             onTap: () {
-              print('Pressed');
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const MusicPage()));
             },
-            enabled: false,
-            // selected: true,
+            // enabled: false,
+            selected: true,
           ),
           ListTile(
             leading: const Icon(Icons.notifications),
