@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uusiaa/MusicPage.dart';
-import 'NewPage.dart';
+import 'package:uusiaa/SettingsPage.dart';
 import 'HomePage.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -40,17 +40,7 @@ class _MyDrawerState extends State<MyDrawer> {
             selected: false,
           ),
           ListTile(
-            leading: const Icon(Icons.remove_red_eye),
-            title: const Text('New Page'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const NextPage()));
-            },
-            // enabled: false,
-            selected: true,
-          ),
-          ListTile(
-            leading: const Icon(Icons.contacts),
+            leading: const Icon(Icons.music_video_rounded),
             title: const Text('Music'),
             onTap: () {
               Navigator.of(context).push(
@@ -59,16 +49,19 @@ class _MyDrawerState extends State<MyDrawer> {
             // enabled: false,
             selected: true,
           ),
-          ListTile(
-            leading: const Icon(Icons.notifications),
-            title: const Text('Notification'),
-            onTap: () {
-              print('Pressed');
-            },
-            enabled: false,
-            // selected: true,
-          ),
+
           const Divider(thickness: 1.0),
+          // switchListTile
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const SettingsPage()));
+            },
+            // enabled: false,
+            selected: true,
+          ),
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,

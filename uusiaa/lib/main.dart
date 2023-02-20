@@ -1,34 +1,27 @@
 import 'package:flutter/material.dart';
-import 'DrawerFile.dart';
+import 'package:uusiaa/theme/theme_constants.dart';
+import 'package:uusiaa/theme/theme_manager.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const HomePage(),
-    ));
+import 'HomePage.dart';
+// import 'package:uusiaa/utils/helper_widgets.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _HomePageState createState() => _HomePageState();
+void main() {
+  runApp(MyApp());
 }
 
-class _HomePageState extends State<HomePage> {
+class MyApp extends StatefulWidget {
+  // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Drawer'),
-      ),
-      drawer: const MyDrawer(),
-      body: const Center(
-        child: FlutterLogo(
-          size: 150.0,
-        ),
-      ),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      home: HomePage(),
     );
   }
 }

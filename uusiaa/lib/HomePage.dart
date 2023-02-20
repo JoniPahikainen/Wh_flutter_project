@@ -16,7 +16,6 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('New Page'),
-        backgroundColor: Color.fromARGB(255, 109, 201, 255),
       ),
       drawer: const MyDrawer(),
       body: const Center(
