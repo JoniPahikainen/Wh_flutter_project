@@ -10,6 +10,7 @@ void main() => runApp(MaterialApp(
 
 class MusicPage extends StatefulWidget {
   const MusicPage({super.key});
+  final String title = 'Music Player';
 
   @override
   // ignore: library_private_types_in_public_api
@@ -18,42 +19,119 @@ class MusicPage extends StatefulWidget {
 
 class _MusicPageState extends State<MusicPage> {
   final player = AudioPlayer();
+  bool isPlaying = false;
+  Duration duration = Duration.zero;
+  Duration position = Duration.zero;
+
+  String formatTime(int seconds) {
+    return '${(Duration(seconds: seconds))}'.split('.')[0].padLeft(8, '0');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    player.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.playing;
+      });
+    });
+
+    player.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    player.onPositionChanged.listen((newPosition) {
+      setState(() {
+        position = newPosition;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("widget.title"),
+        title: Text(widget.title),
       ),
-      drawer: const MyDrawer(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                player.play(AssetSource('music.mp3'));
-              },
-              child: const Text('Play Audio'),
+            Container(
+              height: 300.0,
+              width: 300.0,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage("assets/images/jaakkoTeppo.jpg"),
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  player.stop();
-                },
-                child: const Text('Stop Audio')),
-            ElevatedButton(
-                onPressed: () {
-                  player.pause();
-                },
-                child: const Text('Pause ')),
-            ElevatedButton(
-                onPressed: () {
-                  player.resume();
-                },
-                child: const Text('Resume')),
+            const SizedBox(height: 10),
+            const Text("Hilma ja Onni",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const Text("Jaakko Teppo", style: TextStyle(fontSize: 15)),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 25,
+                  child: IconButton(
+                    icon: Icon(
+                      isPlaying ? Icons.pause : Icons.play_arrow,
+                    ),
+                    onPressed: () {
+                      if (isPlaying) {
+                        player.pause();
+                      } else {
+                        player.play(AssetSource('HilmaJaOnni.mp3'));
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                CircleAvatar(
+                  radius: 25,
+                  child: IconButton(
+                    icon: const Icon(Icons.stop),
+                    onPressed: () {
+                      player.stop();
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Slider(
+              min: 0,
+              max: duration.inSeconds.toDouble(),
+              value: position.inSeconds.toDouble(),
+              onChanged: (value) {
+                final position = Duration(seconds: value.toInt());
+                player.seek(position);
+                player.resume();
+              },
+            ),
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(formatTime(position.inSeconds)),
+                  Text(formatTime((duration - position).inSeconds)),
+                ],
+              ),
+            ),
           ],
         ),
       ),
+      drawer: const MyDrawer(),
     );
   }
 }
