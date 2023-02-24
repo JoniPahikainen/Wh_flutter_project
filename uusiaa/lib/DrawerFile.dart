@@ -31,13 +31,13 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           ListTile(
             leading: const Icon(Icons.account_circle),
-            title: const Text('Account'),
+            title: const Text('Home Page'),
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const HomePage()));
             },
             // enabled: false,
-            selected: false,
+            selected: true,
           ),
           ListTile(
             leading: const Icon(Icons.music_video_rounded),
