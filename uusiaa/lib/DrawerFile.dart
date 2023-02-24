@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uusiaa/DbAddPage.dart';
 import 'package:uusiaa/MusicPage.dart';
 import 'package:uusiaa/SettingsPage.dart';
+import 'DbListPage.dart';
 import 'HomePage.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -12,6 +14,11 @@ class MyDrawer extends StatefulWidget {
 }
 
 class _MyDrawerState extends State<MyDrawer> {
+  bool homeSelected = false;
+  bool musicSelected = false;
+  bool dbAddSelected = false;
+  bool settingsSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -36,20 +43,31 @@ class _MyDrawerState extends State<MyDrawer> {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const HomePage()));
             },
-            // enabled: false,
-            selected: true,
           ),
           ListTile(
             leading: const Icon(Icons.music_video_rounded),
-            title: const Text('Music'),
+            title: const Text('Music Player'),
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const MusicPage()));
             },
-            // enabled: false,
-            selected: true,
           ),
-
+          ListTile(
+            leading: const Icon(Icons.add),
+            title: const Text('Db Add'),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const DbAddPage()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.list),
+            title: const Text("Db List"),
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const MyDataPage()));
+            },
+          ),
           const Divider(thickness: 1.0),
           // switchListTile
           ListTile(
@@ -59,8 +77,6 @@ class _MyDrawerState extends State<MyDrawer> {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => const SettingsPage()));
             },
-            // enabled: false,
-            selected: true,
           ),
           Expanded(
             child: Align(
@@ -70,10 +86,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 title: const Text('Close'),
                 onTap: () {
                   Navigator.of(context).pop();
-                  print('Pressed');
                 },
-                // enabled: false,
-                selected: true,
               ),
             ),
           )
