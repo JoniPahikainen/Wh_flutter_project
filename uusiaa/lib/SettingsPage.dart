@@ -66,7 +66,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Theme App"),
+        title: const Text("Settings"),
       ),
       drawer: const MyDrawer(),
       body: Center(
