@@ -19,18 +19,7 @@ class _DbAddPageState extends State<DbAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Database'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.list),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MyDataPage()),
-              );
-            },
-          ),
-        ],
+        title: const Text('Add Data to Database'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

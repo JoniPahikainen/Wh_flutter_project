@@ -70,7 +70,7 @@ class _MyDataPageState extends State<MyDataPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fetching data'),
+        title: const Text('Show data and delete'),
       ),
       body: SizedBox(
         height: double.infinity,
