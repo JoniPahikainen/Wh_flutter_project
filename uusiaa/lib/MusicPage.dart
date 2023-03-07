@@ -66,15 +66,15 @@ class _MusicPageState extends State<MusicPage> {
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
-                  image: AssetImage("assets/images/jaakkoTeppo.jpg"),
+                  image: AssetImage("assets/images/toka.jpg"),
                   fit: BoxFit.fill,
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            const Text("Hilma ja Onni",
+            const Text("Prey",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const Text("Jaakko Teppo", style: TextStyle(fontSize: 15)),
+            const Text("by Audiobinger", style: TextStyle(fontSize: 15)),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +89,7 @@ class _MusicPageState extends State<MusicPage> {
                       if (isPlaying) {
                         player.pause();
                       } else {
-                        player.play(AssetSource('HilmaJaOnni.mp3'));
+                        player.play(AssetSource('AudiobingerPrey.mp3'));
                       }
                     },
                   ),
